@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/query.css">
+  </head>
+  <body>
+    <div class="queryBuildContainer"></div>
+  </body>
+</html>
+<script src="js/vendor/jquery.min.js"></script>
+<script src="js/vendor/bootstrap.min.js"></script>
+<script src="js/vendor/bootstrap-select.min.js"></script>
+<script src="js/jquery.dataQuery.js"></script>
+<script>
+  $(".queryBuildContainer").dataQuery(
+    {
+    "conditions":["and","or"],
+    "plusIcon":"<i class='fa fa-plus' aria-hidden='true'></i>",
+    "minusIcon":"<i class='fa fa-minus' aria-hidden='true'></i>",
+    "filterOptions":{
+       "title":"--please select fields--",
+       "liveSearch":true    
+      },  
+      "valueOptions":[
+            {
+              "name":"Data of Birth",
+              "value":["1990-12-01","1992-12-02"],
+              "option":{
+                "title":"--please select values--",
+                "liveSearch":true,
+              },
+              "emptyFilter":["is not empty","is empty"],
+              "operator":["equals","like","contains"]
+            },
+            {
+              "name":"Work Experence",
+              "textBox":true,
+              "emptyFilter":["is not empty","is not null"],
+              "operator":["equals","contains"]
+            }
+        ]
+    }
+  );
+</script>

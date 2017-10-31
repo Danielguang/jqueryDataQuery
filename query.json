@@ -1,0 +1,15 @@
+{
+  "conditions":["and","or"],
+  "rules":[
+    {
+      "name":"Data of Birth",
+      "empty":true,
+      "dropDownValue":["1990-12-01","1992-12-02"]
+    },
+    {
+      "name":"WorkExperence",
+      "empty":true,
+      "textBox":true
+    }
+  ]
+}

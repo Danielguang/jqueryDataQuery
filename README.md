@@ -4,8 +4,8 @@ This is the plugin in based on combine with bootsrap select box
 https://silviomoreto.github.io/bootstrap-select/examples/
 
 # Feature
-Allow useds to auto generator the query
-Allow users to do alive search and mutiply selected in dropdown
+Allow useds to generate the beautify query filter.</BR>
+Allow users to do alive search and mutiply selected in dropdown.</BR>
 
 # install
 You need to install jquery and boostrap select

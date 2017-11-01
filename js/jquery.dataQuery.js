@@ -1,8 +1,14 @@
+/*
+  Written by Daniel,
+  version 1.1 update the delete functions
+
+*/
 (function($){
   $.fn.dataQuery = function(options){
       var settings = $.extend({
         plusIcon: "+",
-        minusIcon:"-"
+        minusIcon:"-",
+        multiple:true,
       },options);
       
 
@@ -106,14 +112,15 @@
                   //this is to generator a dropdown
                 
                   if(selectOptions.value){
-                    var valuesAppendStr = generateDropDown(selectOptions.value,"value-dropdown",true);
+                    var valuesAppendStr = generateDropDown(selectOptions.value,"value-dropdown",selectOptions.multiple);
                       $(this).parents(".fields-filter").siblings(".dropDown-value-container").html(valuesAppendStr);
                   
                       $(".dropDown-value-container select").selectpicker(selectOptions.option);
                   }else{
                     //else will display input text
-                      $(this).parents(".fields-filter").siblings(".dropDown-value-container").html("<input type ='text' class= 'form-control' />")
-                  }
+                      $(this).parents(".fields-filter").siblings(".dropDown-value-container").html("<input type ='text' class= 'form-control' required/>")
+                      // $(this).parents(".fields-filter").siblings(".dropDown-value-container").validator("validate");
+                    }
                     $(".dataQuery-operator select").on("changed.bs.select",function(){
                       var operatorValue = $(this).val();
                       if($.inArray(operatorValue,selectOptions.emptyFilter)>=0){
@@ -135,15 +142,17 @@
        $container.on("click",".dataQuery-deleteRules",function(){
          //two cases here to be handle
          // has more than two child, directly delted
-         var childrenLength = $(this).closest(".row").siblings(".row").length ;
-         //console.log($(this).closest(".rule-container").find(".row").length)
-         
+         var childrenLength = $(this).closest(".row").siblings(".row").not(this).length;
          console.log("childrenLength",childrenLength);
-         console.log("childrenLength",$(".dataQueryBuilder").length);
-         if(childrenLength ==0 && $(".dataQueryBuilder").length > 1){
+         if(childrenLength ==1 && $(".dataQueryBuilder").length > 1){
+          var $needClone = $(this).closest(".row").siblings(".row").not(this);
+          $(this).closest(".dataQueryBuilder").parent(".rules-container").append($needClone);
           $(this).closest(".dataQueryBuilder").remove();
          }
           $(this).parent(".row").remove(); 
+          if(settings.deleteQueryNode){
+            settings.deleteQueryNode();
+          }
           
         })
 
@@ -152,6 +161,9 @@
       function addRules($container){
         $container.on("click",".dataQuery-addRules",function(){
           renderFilter($(this).siblings(".rules-container"));
+           if(settings.addRuleNode){
+            settings.addRuleNode();
+          }
         })
       }
 
@@ -159,6 +171,10 @@
          $container.on("click",".dataQuery-addGroupRules",function(){
             $template_container = $(this).parent(".row");
            generateTemplate($template_container);
+
+            if(settings.addGroupRuleNode){
+            settings.addGroupRuleNode();
+          }
         })
       
       }

@@ -15,6 +15,7 @@
 <script src="js/vendor/jquery.min.js"></script>
 <script src="js/vendor/bootstrap.min.js"></script>
 <script src="js/vendor/bootstrap-select.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
 <script src="js/jquery.dataQuery.js"></script>
 <script>
   $(".queryBuildContainer").dataQuery(
@@ -34,6 +35,7 @@
                 "title":"--please select values--",
                 "liveSearch":true,
               },
+              "multiple":true,
               "emptyFilter":["is not empty","is empty"],
               "operator":["equals","like","contains"]
             },
@@ -43,7 +45,16 @@
               "emptyFilter":["is not empty","is not null"],
               "operator":["equals","contains"]
             }
-        ]
+        ],
+        "deleteQueryNode":function(){
+            //fire functions on delete nodes;
+        },
+        "addRuleNode":function(){
+          //fire fucntions on add nodes;
+        },
+         "addGroupRuleNode":function(){
+          //fire fucntions on add nodes;
+        }  
     }
   );
 </script>
